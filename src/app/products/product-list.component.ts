@@ -1,12 +1,16 @@
-import { Component } from "@angular/core";
+import { Component, OnInit } from "@angular/core";
+import { IProduct } from "src/app/products/product";
 
 
 @Component({
     selector:'pm-products',
-    templateUrl:'./product-list.component.html'
+    templateUrl:'./product-list.component.html',
+    styleUrls:['./product-list.component.css']
 })
 
-export class ProductListComponent{
+export class ProductListComponent implements OnInit{
+
+    
     //int age = 10;
     //var age = 10; let age = 10
 
@@ -22,15 +26,15 @@ export class ProductListComponent{
 
     listFilter:string;
 
-    products:any[] = [
+    products:IProduct[] = [
         {
             "productId": 1,
             "productName": "Leaf Rake",
             "productCode": "GDN-0011",
             "releaseDate": "March 19, 2016",
             "description": "Leaf rake with 48-inch wooden handle.",
-            "price": 19.95,
-            "starRating": 3.2,
+            "price": 9.95,
+            "starRating": 3.5,
             "imageUrl": "https://cdn.pixabay.com/photo/2017/11/03/21/22/rake-2915742_960_720.jpg"
         },
         {
@@ -54,6 +58,10 @@ export class ProductListComponent{
             "imageUrl": "https://image.shutterstock.com/image-vector/colorful-cartoon-claw-hammer-handyman-260nw-1119415058.jpg"
         }
     ]
+
+    ngOnInit(): void {
+        console.log('Ng OnInit is called');
+     }
 
     toggleImage():void{
         console.log("Initial Value :: ", this.showImage);

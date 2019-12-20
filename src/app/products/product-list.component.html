@@ -2,8 +2,7 @@
     <div class="panel-heading">
         {{pageTitle}}
     </div>
-    <div class="panel-body">
-        <h1>This is a panel Body</h1>
+    <div class="panel-body boxContainer">
         <div class="row">
             <div class="col-md-2">
                 Filter By 
@@ -34,7 +33,7 @@
                     </tr>
                 </thead>
                 <tbody>
-                        <tr *ngFor="let product of products">
+                        <tr *ngFor="let product of products | productFilter:listFilter">
                             <td>
                                 <img *ngIf="showImage"
                                     [src]="product.imageUrl"
@@ -42,11 +41,11 @@
                                     [style.margin.px]='imageMargin'
                                 />
                             </td>
-                            <td>{{product.productName}}</td>
-                            <td>{{product.productCode}}</td>
+                            <td>{{product.productName | uppercase}}</td>
+                            <td>{{product.productCode | lowercase | convertToSpace:'-'}}</td>
                             <td>{{product.releaseDate}}</td>
-                            <td>{{product.price}}</td>
-                            <td>{{product.starRating}}</td>
+                            <td [className]="product.price > 15 ? 'high' : 'low'">{{product.price | currency:'USD':true}}</td>
+                            <td><pm-star [rating]="product.starRating"></pm-star></td>
                         </tr>
                 </tbody>
                 
